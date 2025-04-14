@@ -17,7 +17,7 @@ window.onload = function() {
 ');
     spritesheetHandler.load(() => {
         // Example usage: animating frames with a common prefix from the sprite sheet
-        const animationName = 'fire loop full instance1'; // Common prefix for the animation frames
+        const animationName = 'fire loop full instance'; // Common prefix for the animation frames
         spritesheetHandler.animate(context, animationName, 100, 100, 55); // 10 frames per second
     });
 };
