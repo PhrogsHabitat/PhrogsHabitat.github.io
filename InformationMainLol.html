@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MainStylesLol.css">
+    <title>Phrog's Habitat: Information</title>
+</head>
+
+<body>
+
+<div id="cookie-consent" style="position: fixed; bottom: 20px; left: 20px; padding: 10px; background-color: #333; color: white; z-index: 9999; display: none;">
+    <p>We use cookies to improve your experience. By continuing, you agree to our use of cookies.</p>
+    <button id="accept-cookies" style="background-color: #4CAF50; color: white; border: none; padding: 5px 10px; cursor: pointer;">Accept</button>
+</div>
+
+<!-- Background Image Container -->
+<div data-range="0.01,-2" class="bg-container"></div>
+
+<!-- Centered Section for Title -->
+<div data-range="-3,2" class="section-center" id="label">
+    <h1 class="mb-0"></h1>
+</div>
+
+<!-- Auth Form (for login/sign-up) -->
+<div id="auth-form" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 10000;">
+    <h2 id="form-title">Sign In</h2>
+    <form id="login-form">
+        <label style="color: black" for="username">Username:</label><br>
+        <input style="color: black" type="text" id="username" name="username" required><br><br>
+        <label style="color: black" for="password">Password:</label><br>
+        <input style="color: black" type="password" id="password" name="password" required><br><br>
+        <button type="submit" id="auth-btn">Sign In</button>
+    </form>
+    <p style="color: black" id="toggle-auth">Don't have an account? <a href="#" id="toggle-auth-link">Sign Up</a></p>
+    <button id="close-auth-form" style="margin-top: 10px;">Close</button>
+</div>
+
+<!-- Profile Section (Visible when logged in) -->
+<div id="profile-section" style="display: none; text-align: center; padding: 20px;">
+    <h2>Welcome, <span id="profile-username"></span>!</h2>
+    <div class="profile-details">
+        <p><strong>Username:</strong> <span id="profile-username-detail"></span></p>
+        <p><strong>Email:</strong> user@example.com</p>
+        <p><strong>Membership:</strong> Phrog Enthusiast</p>
+        <p><strong>Favorite Habitat:</strong> Wetlands</p>
+        <button id="logout-button">Logout</button>
+    </div>
+</div>
+
+<!-- Navigation bar -->
+<input class="menu-icon" type="checkbox" id="menu-icon" name="menu-icon"/>
+<label for="menu-icon"></label>
+<div class="dimming-overlay"></div>
+<nav class="nav">
+    <ul class="pt-5">
+        <li><a href="PhrogMainLol.html">Habitat Home</a></li>
+        <li><a href="InformationMainLol.html">Information</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Experience</a></li>
+    </ul>
+</nav>
+
+<div id="popup-message" style="display: none; position: fixed; top: 0; left: 50%; transform: translateX(-50%); padding: 10px; background-color: rgba(0, 0, 0, 0.8); color: white; font-size: 16px; border-radius: 4px; opacity: 0; transition: opacity 0.5s, top 0.5s;">
+    Some changes require a page refresh!
+</div>
+
+<script src="auth.js"></script>
+
+</body>
+
+<!-- Footer.html -->
+<footer>
+    <link rel="stylesheet" href="MainStylesLol.css">
+    
+    <canvas id="waveCanvas" class="top-element"></canvas>
+
+    <script src="FooterLol.js"></script>
+
+    <p class="bigBoi">Contributors to The Data on This Site</p>
+    <ul class="smallBoi" id="contribsTxt">
+        <li id="maddie">Maddie_B</li>
+        <li id="trent">The Spectral Boombox</li>
+        <li id="cory">InfinitelyDumb</li>
+        <li id="eli">Click_Switch</li>
+    </ul>
+</footer>
+
+</html>
