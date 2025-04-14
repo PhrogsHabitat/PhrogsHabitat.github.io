@@ -13,7 +13,8 @@ window.onload = function() {
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
 
-    const spritesheetHandler = new SpritesheetHandler('assets/images/coolFlames.png', 'assets/images/coolFlames.xml');
+    const spritesheetHandler = new SpritesheetHandler('https://phrogshabitat.github.io/assets/images/coolFlames.png', 'https://phrogshabitat.github.io/assets/images/coolFlames.xml
+');
     spritesheetHandler.load(() => {
         // Example usage: animating frames with a common prefix from the sprite sheet
         const animationName = 'fire loop full instance1'; // Common prefix for the animation frames
