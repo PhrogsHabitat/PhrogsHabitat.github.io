@@ -9,6 +9,17 @@ FOR SOME OF THE LOGIC USED ON THIS SCRIPT!
 */
 
 
+window.onload = function() {
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+
+    const spritesheetHandler = new SpritesheetHandler('assets/images/coolFlames.png', 'assets/images/coolFlames.xml');
+    spritesheetHandler.load(() => {
+        // Example usage: animating frames with a common prefix from the sprite sheet
+        const animationName = 'fire loop full instance1'; // Common prefix for the animation frames
+        spritesheetHandler.animate(context, animationName, 100, 100, 55); // 10 frames per second
+    });
+};
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if cookies have been accepted
