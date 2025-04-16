@@ -4,10 +4,53 @@
     <link rel="stylesheet" href="MainStylesLol.css">
     <title>Phrog's Habitat: Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="cookieShit.js" type="module"></script>
-    <script src="texture-atlas.js"></script>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+	<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/diarmidmackenzie/instanced-mesh@v0.2-alpha/src/instanced-mesh.min.js"></script>
+    <script src="./texture-atlas.js"></script>
+    <script>
+      AFRAME.registerComponent('animate-sprite', {
+        schema: {
+          src: {type: 'selector'},
+          xml: {type: 'selector'},
+          texturePrefix: {type: 'string'},
+          frames: {type: 'number'},
+          frameMsecs: {type: 'number', default: 40}  // 40msecs/frame = 25fps.
+        },
+
+        init: function() {
+
+          this.timeDelta = 0;
+          this.frameCounter = 0;
+          textureString = this.data.texturePrefix + "00";
+          this.el.setAttribute("texture-atlas",
+                               {"subTexture" : textureString,
+                                "src" : this.data.src,
+                                "xml" : this.data.xml});
+        },
+
+        tick: function (time, timeDelta) {
+
+          this.timeDelta += timeDelta;
+          if (this.timeDelta > this.data.frameMsecs) {
+            // advance a frame.
+            this.frameCounter++;
+            if (this.frameCounter >= this.data.frames) {
+              this.frameCounter = 0;
+            }
+            textureString = this.data.texturePrefix + this.frameCounter.toString().padStart(2,"0");
+
+            this.el.setAttribute("texture-atlas",
+                                 {"subTexture" : textureString});
+
+            // reset frame advance timer.
+            this.timeDelta = 0;
+          }
+
+        }
+      });
+    </script>
+    <script src="cookieShit.js" type="module"></script>
     
 
 	
@@ -21,9 +64,9 @@
       </a-assets>
 
       <a-image position="0 1.5 -1.5" width="1"
-               texture-atlas="xml:#bfxml;src:#bf;subTexture:boyfriend dodge0014">
-      </a-image>      
-</a-scene>
+               animate-sprite="xml:#bfxml;src:#bf;texturePrefix:BF Dead Loop00;frames:33">
+      </a-image>
+    </a-scene>
 <canvas id="canvas"></canvas>
 
 <div id="cookie-consent" style="position: fixed; bottom: 20px; left: 20px; padding: 10px; background-color: #333; color: white; z-index: 9999; display: none;">
