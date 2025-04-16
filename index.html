@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="cookieShit.js" type="module"></script>
     <script src="texture-atlas.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/diarmidmackenzie/instanced-mesh@v0.2-alpha/src/instanced-mesh.min.js"></script>
     
 
 	
 </head>
 <body>
+
+<a-scene>
+      <a-assets>
+        <img id="bf" src="assets/BOYFRIEND.png">
+        <a-asset-item id="bfxml" src="assets/BOYFRIEND.xml"></a-asset-item>
+      </a-assets>
+
+      <a-image position="0 1.5 -1.5" width="1"
+               texture-atlas="xml:#bfxml;src:#bf;subTexture:boyfriend dodge0014">
+      </a-image>      
+</a-scene>
 <canvas id="canvas"></canvas>
 
 <div id="cookie-consent" style="position: fixed; bottom: 20px; left: 20px; padding: 10px; background-color: #333; color: white; z-index: 9999; display: none;">
