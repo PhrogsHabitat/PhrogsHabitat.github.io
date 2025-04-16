@@ -30,22 +30,23 @@ window.onload = function() {
                     frameY: parseInt(frame.getAttribute('frameY'))
                   };
                 });
+          const image = new Image();
+            image.src = 'https://phrogshabitat.github.io/assets/images/coolFlames.png';
+        
+            image.onload = () => {
+              const canvas = document.getElementById('canvas');
+              const ctx = canvas.getContext('2d');
+              const frameName = 'fire loop full instance 1';
+              const frame = spriteData[frameName];
+        
+              ctx.drawImage(
+                image,
+                frame.x, frame.y, frame.width, frame.height,
+                10, 10, frame.width, frame.height
+              );
+            };
       });
-        const image = new Image();
-        image.src = 'https://phrogshabitat.github.io/assets/images/coolFlames.png';
-    
-        image.onload = () => {
-          const canvas = document.getElementById('canvas');
-          const ctx = canvas.getContext('2d');
-          const frameName = 'fire loop full instance 1';
-          const frame = spriteData[frameName];
-    
-          ctx.drawImage(
-            image,
-            frame.x, frame.y, frame.width, frame.height,
-            10, 10, frame.width, frame.height
-          );
-        };
+        
     
 };
 //    const spritesheetHandler = new SpritesheetHandler('https://phrogshabitat.github.io/assets/images/coolFlames.png', 'https://phrogshabitat.github.io/assets/images/coolFlames.xml
