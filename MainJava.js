@@ -10,17 +10,46 @@ FOR SOME OF THE LOGIC USED ON THIS SCRIPT!
 
 
 window.onload = function() {
-    const canvas = document.getElementById('canvas');
-    const context = canvas.getContext('2d');
+    fetch('https://phrogshabitat.github.io/assets/images/coolFlames.xml')
+      .then(response => response.text())
+      .then(xmlString => {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "application/xml");
 
-    const spritesheetHandler = new SpritesheetHandler('https://phrogshabitat.github.io/assets/images/coolFlames.png', 'https://phrogshabitat.github.io/assets/images/coolFlames.xml
-');
-    spritesheetHandler.load(() => {
-        // Example usage: animating frames with a common prefix from the sprite sheet
-        const animationName = 'fire loop full instance1'; // Common prefix for the animation frames
-        spritesheetHandler.animate(context, animationName, 100, 100, 55); // 10 frames per second
-    });
+              const frames = xmlDoc.querySelectorAll('SubTexture');
+                const spriteData = {};
+            
+                frames.forEach(frame => {
+                  const name = frame.getAttribute('name');
+                  spriteData[name] = {
+                    x: parseInt(frame.getAttribute('x')),
+                    y: parseInt(frame.getAttribute('y')),
+                    width: parseInt(frame.getAttribute('width')),
+                    height: parseInt(frame.getAttribute('height')),
+                    frameX: parseInt(frame.getAttribute('frameX')),
+                    frameY: parseInt(frame.getAttribute('frameY'))
+                  };
+                });
+      });
+        const image = new Image();
+        image.src = 'https://phrogshabitat.github.io/assets/images/coolFlames.png';
+    
+        image.onload = () => {
+          const canvas = document.getElementById('canvas');
+          const ctx = canvas.getContext('2d');
+          const frameName = 'fire loop full instance 1';
+          const frame = spriteData[frameName];
+    
+          ctx.drawImage(
+            image,
+            frame.x, frame.y, frame.width, frame.height,
+            10, 10, frame.width, frame.height
+          );
+        };
+    
 };
+//    const spritesheetHandler = new SpritesheetHandler('https://phrogshabitat.github.io/assets/images/coolFlames.png', 'https://phrogshabitat.github.io/assets/images/coolFlames.xml
+
 
 document.addEventListener('DOMContentLoaded', function() {
     // Check if cookies have been accepted
